@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 '&outputFormat=' + supportedFormats[0] +
                 '&latitude=' + String(latitude) +
                 '&longitude=' + String(longitude);
+            console.log(player.src);
             player.play();
             event.preventDefault();
         };

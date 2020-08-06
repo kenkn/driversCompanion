@@ -53,7 +53,6 @@ def index():
 def read():
     try:
         outputFormat = request.args.get('outputFormat')
-        # text = request.args.get('text')
         voiceId = request.args.get('voiceId')
         latitude = request.args.get('latitude')
         longitude = request.args.get('longitude')

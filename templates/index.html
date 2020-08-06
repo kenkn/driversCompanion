@@ -4,6 +4,7 @@
     <title>Text-to-Speech Example Application</title>
     <script src="../static/js/src.js"></script>
     <link rel="stylesheet" href="../static/style/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 
 <body>
@@ -35,6 +36,18 @@
         <br><br> さあ、良い運転ライフを！
         <br><br>
     </div>
+
+    <div class="option">
+        <p class="p_gen">select a mode</p>
+        <input type="radio" name="rd_op" id="all" class="opt">
+        <label for="all" class="unsp" id="opt_radio">指定なし</label>
+        <input type="radio" name="rd_op" id="restaurant" class="opt">
+        <label for="restaurant" class="rest" id="opt_radio">飲食店系</label>
+        <input type="radio" name="rd_op" id="amusement" class="opt">
+        <label for="amusement" class="amuse" id="opt_radio">娯楽系</label>
+    </div>
+    <br>
+
     <form id="radiobuttons" name="radiobuttons">
         <input type="radio" name="rd" id="male" class="gender" value="Takumi" checked>
         <label for="male" id="gender_radio" class="man_radio"><img src="../static/images/male.png" width="50" height="50" /><br>man</label>
