@@ -2,123 +2,8 @@
 
 <head>
     <title>Text-to-Speech Example Application</title>
-    <script>
-        var AUDIO_FORMATS = {
-            'ogg_vorbis': 'audio/ogg',
-            'mp3': 'audio/mpeg',
-            'pcm': 'audio/wave; codecs=1'
-        };
-
-        var latitude, longitude;
-
-        function fetchJSON(method, url, onSuccess, onError) {
-            var request = new XMLHttpRequest();
-            request.open(method, url, true);
-            request.onload = function() {
-                // ロード成功
-                if (request.readyState === 4) {
-                    // リクエスト成功
-                    if (request.status === 200) {
-                        var data;
-
-                        try {
-                            data = JSON.parse(request.responseText);
-                        } catch (error) {
-                            onError(request.status, error.toString());
-                        }
-
-                        onSuccess(data);
-                    } else {
-                        onError(request.status, request.responseText)
-                    }
-                }
-            };
-
-            request.send();
-        }
-
-        function getSupportedAudioFormats(player) {
-            return Object.keys(AUDIO_FORMATS)
-                .filter(function(format) {
-                    var supported = player.canPlayType(AUDIO_FORMATS[format]);
-                    return supported === 'probably' || supported === 'maybe';
-                });
-        }
-
-        function getUsersLocation() {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                return {
-                    latitude: latitude,
-                    longitude: longitude
-                };
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            var voiceMenu = document.getElementById('voice'),
-                player = document.getElementById('player'),
-                button = document.getElementById('button'),
-                supportedFormats = getSupportedAudioFormats(player);
-
-            if (supportedFormats.length === 0) {
-                submit.disabled = true;
-                alert('The web browser in use does not support any of the' +
-                    ' available audio formats. Please try with a different' +
-                    ' one.');
-            }
-
-            button.addEventListener('click', function(event) {
-                var setVoice = function() {
-                        var selectedVoice = voiceMenu
-                            .options[voiceMenu.selectedIndex]
-                            .value;
-
-                        navigator.geolocation.getCurrentPosition(function(position) {
-                            latitude = position.coords.latitude;
-                            longitude = position.coords.longitude;
-                        });
-
-                        // サーバに送信
-                        player.src = '/read?voiceId=' +
-                            encodeURIComponent(selectedVoice) +
-                            '&outputFormat=' + supportedFormats[0] +
-                            '&latitude=' + String(latitude) +
-                            '&longitude=' + String(longitude);
-                        player.play();
-
-                        event.preventDefault();
-                    }
-                    // 15秒おきに送信
-                setInterval(setVoice, 15000);
-            });
-
-            fetchJSON('GET', '/voices',
-                function(voices) {
-                    var container = document.createDocumentFragment();
-
-                    // Pollyの全ボイスの取得
-                    // TODO
-                    // 日本語の男女のみインポート
-                    voices.forEach(function(voice) {
-                        var option = document.createElement('option');
-                        option.value = voice['Id'];
-                        option.innerHTML = voice['Name'] + ' (' +
-                            voice['Gender'] + ', ' +
-                            voice['LanguageName'] + ')';
-                        container.appendChild(option);
-                    });
-
-                    voiceMenu.appendChild(container);
-                    voiceMenu.disabled = false;
-                },
-                // リクエスト失敗時
-                function(status, response) {
-                    alert(status + ' - ' + response);
-                });
-        });
-    </script>
+    <script src="../static/js/src.js"></script>
+    <link rel="stylesheet" href="../static/style/style.css">
 </head>
 
 <body>
@@ -128,7 +13,39 @@
                 <option value="">Choose a voice...</option>
         </select>
     </div>
-    <input type="button" value="Read" id="button" />
+    <input type="button" value="Reaaaaaaaaad" id="button" />
+
+    <header id="header">
+        <h1>
+            <a href="/"><img src="../static/images/iekei.png" width="220" height="50" alt="家系ヌ～ドルズ" /></a>
+        </h1>
+        <nav class="pc-nav">
+            <ul>
+                <li><a href="#">introduce</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="honbun">
+        <br><br><br><br>
+        <p id="nemui">
+            「眠たい」「退屈やな」<br>
+        </p>
+        運転中にそんなことを思ったことはありませんか。<br> これを使えばそんな悩みもすぐに解決！
+        <br> まるで誰かと一緒にいるような感覚を味わえることでしょう。
+        <br><br> さあ、良い運転ライフを！
+        <br><br>
+    </div>
+    <form id="radiobuttons" name="radiobuttons">
+        <input type="radio" name="rd" id="male" class="gender" value="Takumi" checked>
+        <label for="male" id="gender_radio" class="man_radio"><img src="../static/images/male.png" width="50" height="50" /><br>man</label>
+
+        <input type="radio" name="rd" id="female" class="gender" value="Mizuki">
+        <label for="female" id="gender_radio" class="woman_radio"><img src="../static/images/female.png" width="50" height="50" /><br>woman</label>
+    </form>
+    <br><br>
+    <div class="start">
+        <button id="start_button" type="button">START</button>
+    </div>
     <audio id="player"></audio>
 </body>
 

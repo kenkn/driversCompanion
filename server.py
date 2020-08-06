@@ -68,7 +68,7 @@ def read():
             spot = get_around_spot(float(latitude), float(longitude))
             try:
                 response = polly.synthesize_speech(Text=spot,
-                                                   VoiceId='Mizuki',
+                                                   VoiceId=voiceId,
                                                    OutputFormat=outputFormat)
             except (BotoCoreError, ClientError) as err:
                 raise InvalidUsage(str(err), status_code=500)
