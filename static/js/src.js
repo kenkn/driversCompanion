@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
         function(voices) {
             var container = document.createDocumentFragment();
             // Pollyの全ボイスの取得
-            // TODO
             // 日本語の男女のみインポート
             voices.forEach(function(voice) {
                 var option = document.createElement('option');

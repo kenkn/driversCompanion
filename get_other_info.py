@@ -27,14 +27,28 @@ def create_text(place_result):
         text += '山大だね! 山大生ってホントにイケメンが多いよね!'
     elif check_include_text('ラーメン祐三', place_result):
         text += 'ラーメン祐三がある! このアプリを作成したメンバーは祐三が大好きみたいだよ!'
+    elif check_include_text('Trial', place_result):
+        text += 'トライアルだね！24時間営業なのは嬉しいけど品出しのタイミングで行っちゃうんだよなあ'
     elif check_include_text('Hotto Motto', place_result):
         text += 'ごはんに困ったらほっともっとだね．ここでの待ち時間は案外嫌いじゃないな'
     elif check_include_text('Joyfull', place_result):
         text += '近くにジョイフルがある！私も学生の頃はそこでだべってたなあ'
     elif check_include_text('Sukiya', place_result):
-        text += 'すき家の名前の由来はすき焼きらしいよ'
+        text += 'すいません．三種のチーズ牛丼に温玉付きをお願いします．'
     elif check_include_text('寿司', place_result):
         text += '寿司屋さんがある！これを作った人はカニ味噌の軍艦が大好きみたいだよ'
+    elif check_include_text('焼肉', place_result):
+        text += '焼肉屋さんが近いね！ 焼肉は高いから手が出ないんだよなあ'
+    elif check_include_text('ウォンツ', place_result):
+        text += 'ウォンツは意外とラインペイが使えるから便利だよね！'
+    elif check_include_text('Mos Burger', place_result):
+        text += 'モスがあるやん！ちょっと高いお金払ってでも食べたいよね！'
+    elif check_include_text('居酒屋', place_result):
+        text += '居酒屋だ！飲んだら運転しないでね'
+    elif check_include_text('UNIQLO', place_result):
+        text += 'ユニクロじゃん！ユニクロの本社は山口にあるんだよ！'
+    elif check_include_text('Matsuya', place_result):
+        text += '松屋があるね！チー牛は無いよ！'
     elif check_include_text('McDonald', place_result):
         cand = ['マックここにもあるじゃん! ちなみにマクドと、マックどっち派？',
                 'マックあるね！ドナルドは31の言語を喋れるらしい・・・',
@@ -57,7 +71,9 @@ def create_text(place_result):
                 'ひょっとしてすごい田舎に来てる? 私の仕事が無くなってしまうので困るよ！',
                 'なかなか閑静な場所だね．',
                 '眠らないように運転頑張ってね！私も会話を繋ぐように頑張るよ',
-                '暇ですね、しりとりでもしますか。じゃあ、きりん。あっ・・・'
+                '暇ですね、しりとりでもしますか。じゃあ、きりん。あっ・・・',
+                'ながらスマホに注意してね！ずっと喋り続けるよ！',
+                '日本が左側通行なのは明治時代，武士が左側に刀を持っていた習慣から由来してるらしいよ！'
                 ]
         i = random.randint(0, len(cand) - 1)
         text += cand[i]
