@@ -95,6 +95,7 @@ cli.add_argument(
     "-p", "--port", type=int, metavar="PORT", dest="port", default=8000)
 cli.add_argument(
     "--host", type=str, metavar="HOST", dest="host", default="localhost")
+# テスト時は0.0.0.0:443
 arguments = cli.parse_args()
 
 
@@ -102,3 +103,6 @@ if __name__ == '__main__':
     app.secret_key = os.urandom(24)
     app.debug = True
     app.run(arguments.host, arguments.port)
+    # HTTPS用
+    # app.run(arguments.host, arguments.port, ssl_context=(
+    # 'openssl/server.crt', 'openssl/server.key'))

@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
             ' one.');
     }
     button.addEventListener('click', function(event) {
+        button.style.visibility = "hidden";
         var setVoice = function() {
             var selectedVoice = (radioValue[0].checked ? 'Takumi' : 'Mizuki');
             navigator.geolocation.getCurrentPosition(function(position) {
